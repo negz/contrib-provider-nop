@@ -28,6 +28,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 
 	xpv1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	"github.com/crossplane/crossplane-runtime/pkg/connection"
 	"github.com/crossplane/crossplane-runtime/pkg/controller"
 	"github.com/crossplane/crossplane-runtime/pkg/event"
 	"github.com/crossplane/crossplane-runtime/pkg/meta"
@@ -45,6 +46,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		resource.ManagedKind(v1alpha1.NopResourceGroupVersionKind),
 		managed.WithPollInterval(o.PollInterval),
 		managed.WithExternalConnecter(&connecter{}),
+		managed.WithConnectionPublisher(connection.NewDetailsManager(mgr.GetClient(), v1alpha1.StoreConfigGroupVersionKind)),
 		managed.WithLogger(o.Logger.WithValues("controller", name)),
 		managed.WithRecorder(event.NewAPIRecorder(mgr.GetEventRecorderFor(name))),
 		managed.WithMetricRecorder(o.MetricOptions.MRMetrics),

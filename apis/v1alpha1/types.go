@@ -80,14 +80,14 @@ type NopResourceObservation struct {
 
 // A NopResourceSpec defines the desired state of a NopResource.
 type NopResourceSpec struct {
-	xpv1.ResourceSpec `json:",inline"`
-	ForProvider       NopResourceParameters `json:"forProvider"`
+	xpv1.ManagedSpec `json:",inline"`
+	ForProvider      NopResourceParameters `json:"forProvider"`
 }
 
 // A NopResourceStatus represents the observed state of a NopResource.
 type NopResourceStatus struct {
-	xpv1.ResourceStatus `json:",inline"`
-	AtProvider          NopResourceObservation `json:"atProvider,omitempty"`
+	xpv1.ManagedStatus `json:",inline"`
+	AtProvider         NopResourceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -97,7 +97,7 @@ type NopResourceStatus struct {
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,nop}
+// +kubebuilder:resource:categories={crossplane,managed,nop}
 type NopResource struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

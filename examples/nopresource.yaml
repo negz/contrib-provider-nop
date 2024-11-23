@@ -1,6 +1,7 @@
 apiVersion: nop.crossplane.io/v1alpha1
 kind: NopResource
 metadata:
+  namespace: default
   name: example
 spec:
   forProvider:
@@ -40,12 +41,12 @@ spec:
       value: verysecurepassword
     - name: endpoint
       value: 127.0.0.1
-  # Like all managed resources the NopResource allows you to configure a
-  # provider config. It ignores the configured value.
-  providerConfigRef:
-    name: default
-  # Simulating connection details (see connectionDetails above) works
-  # only when the NopResource writes a connection secret.
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: nop-example-resource
+  crossplane:
+    # Like all managed resources the NopResource allows you to configure a
+    # provider config. It ignores the configured value.
+    providerConfigRef:
+      name: default
+    # Simulating connection details (see connectionDetails above) works
+    # only when the NopResource writes a connection secret.
+    publishConnectionDetailsTo:
+      name: nop-example-resource

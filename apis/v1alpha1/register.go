@@ -50,8 +50,20 @@ var (
 	NopResourceValidator = webhook.NewValidator()
 )
 
+// StoreConfig type metadata.
+var (
+	StoreConfigKind             = reflect.TypeOf(StoreConfig{}).Name()
+	StoreConfigGroupKind        = schema.GroupKind{Group: Group, Kind: StoreConfigKind}.String()
+	StoreConfigKindAPIVersion   = StoreConfigKind + "." + SchemeGroupVersion.String()
+	StoreConfigGroupVersionKind = SchemeGroupVersion.WithKind(StoreConfigKind)
+
+	// StoreConfigValidator is doing nothing on purpose at the moment, you now... a nop validator.
+	StoreConfigValidator = webhook.NewValidator()
+)
+
 func init() {
 	SchemeBuilder.Register(&NopResource{}, &NopResourceList{})
+	SchemeBuilder.Register(&StoreConfig{}, &StoreConfigList{})
 }
 
 // +kubebuilder:webhook:verbs=create;update,path=/validate-nop-crossplane-io-v1alpha1-nopresource,mutating=false,failurePolicy=fail,groups=nop.crossplane.io,resources=nopresources,versions=v1alpha1,name=nopresources.nop.crossplane.io,sideEffects=None,admissionReviewVersions=v1

@@ -102,7 +102,7 @@ func TestReconcileLogic(t *testing.T) {
 					},
 				},
 				Status: v1alpha1.NopResourceStatus{
-					ResourceStatus: xpv1.ResourceStatus{
+					ManagedStatus: xpv1.ManagedStatus{
 						ConditionedStatus: xpv1.ConditionedStatus{
 							Conditions: []xpv1.Condition{
 								{
@@ -142,7 +142,7 @@ func TestReconcileLogic(t *testing.T) {
 					},
 				},
 				Status: v1alpha1.NopResourceStatus{
-					ResourceStatus: xpv1.ResourceStatus{
+					ManagedStatus: xpv1.ManagedStatus{
 						ConditionedStatus: xpv1.ConditionedStatus{
 							Conditions: []xpv1.Condition{
 								{
@@ -187,7 +187,7 @@ func TestReconcileLogic(t *testing.T) {
 					},
 				},
 				Status: v1alpha1.NopResourceStatus{
-					ResourceStatus: xpv1.ResourceStatus{
+					ManagedStatus: xpv1.ManagedStatus{
 						ConditionedStatus: xpv1.ConditionedStatus{
 							Conditions: []xpv1.Condition{
 								{

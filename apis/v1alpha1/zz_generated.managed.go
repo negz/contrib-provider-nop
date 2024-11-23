@@ -24,29 +24,19 @@ func (mg *NopResource) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this NopResource.
-func (mg *NopResource) GetDeletionPolicy() xpv1.DeletionPolicy {
-	return mg.Spec.DeletionPolicy
-}
-
 // GetManagementPolicies of this NopResource.
 func (mg *NopResource) GetManagementPolicies() xpv1.ManagementPolicies {
-	return mg.Spec.ManagementPolicies
+	return mg.Spec.Crossplane.ManagementPolicies
 }
 
 // GetProviderConfigReference of this NopResource.
 func (mg *NopResource) GetProviderConfigReference() *xpv1.Reference {
-	return mg.Spec.ProviderConfigReference
+	return mg.Spec.Crossplane.ProviderConfigReference
 }
 
 // GetPublishConnectionDetailsTo of this NopResource.
 func (mg *NopResource) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
-	return mg.Spec.PublishConnectionDetailsTo
-}
-
-// GetWriteConnectionSecretToReference of this NopResource.
-func (mg *NopResource) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
-	return mg.Spec.WriteConnectionSecretToReference
+	return mg.Spec.Crossplane.PublishConnectionDetailsTo
 }
 
 // SetConditions of this NopResource.
@@ -54,27 +44,17 @@ func (mg *NopResource) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this NopResource.
-func (mg *NopResource) SetDeletionPolicy(r xpv1.DeletionPolicy) {
-	mg.Spec.DeletionPolicy = r
-}
-
 // SetManagementPolicies of this NopResource.
 func (mg *NopResource) SetManagementPolicies(r xpv1.ManagementPolicies) {
-	mg.Spec.ManagementPolicies = r
+	mg.Spec.Crossplane.ManagementPolicies = r
 }
 
 // SetProviderConfigReference of this NopResource.
 func (mg *NopResource) SetProviderConfigReference(r *xpv1.Reference) {
-	mg.Spec.ProviderConfigReference = r
+	mg.Spec.Crossplane.ProviderConfigReference = r
 }
 
 // SetPublishConnectionDetailsTo of this NopResource.
 func (mg *NopResource) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
-	mg.Spec.PublishConnectionDetailsTo = r
-}
-
-// SetWriteConnectionSecretToReference of this NopResource.
-func (mg *NopResource) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
-	mg.Spec.WriteConnectionSecretToReference = r
+	mg.Spec.Crossplane.PublishConnectionDetailsTo = r
 }
